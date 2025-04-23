@@ -20,11 +20,6 @@
 // Define state variables for header and footer
 #let current-section = state("current-section", none)
 
-// Function to draw binding line
-#let draw-binding() = {
-  line(start: (0.8cm, 0cm), end: (0.8cm, 100%), stroke: 0.5pt)
-}
-
 // Main template function
 #let project(
   title: "",
@@ -64,17 +59,19 @@
   show heading: it => {
     if it.level == 1 {
       update-section(it.body)
-    }
+      // It just works, don't remove this line.
+      // Otherwise the header will be displayed in the next page
+      set page(header: "abc")
+    } 
     it
   }
 
-  // Set heading spacing
+  // Set heading spacing in abstract and toc
   show heading: set block(below: 1em, above: 2em)
 
   // Define header and footer content
   let header-content = context {
-    // let section = current-section.at(here())
-    let section = current-section.at(here())
+    let section = current-section.get()
     if section != none {
       grid(
         columns: (1fr, 1fr),
@@ -82,13 +79,13 @@
         align(right)[#text(size: zihao("小五"))[#section]],
       )
       v(-0.9em)
-      line(length: 100%, stroke: 1.1pt)
+      line(length: 100%, stroke: 1pt)
+      
     }
   }
 
   let footer-content = context {
-    let section = current-section.at(here())
-    // let section = current-section.get()
+    let section = current-section.get()
     if section != none {
       align(center)[#counter(page).display()]
     }
@@ -110,16 +107,6 @@
     numbering: "1",
   )
 
-  // Add binding line to each page
-  show page: page => {
-    let section = current-section.at(page.location())
-    if section != none {
-      // Add binding line
-      place(left, draw-binding())
-    }
-    page
-  }
-
   // Set text properties
   set text(
     size: 12pt,
@@ -132,14 +119,6 @@
     justify: true,
     first-line-indent: (amount: 2em, all: true),
   )
-
-  // Set heading properties
-
-  // Set figure and table properties
-  // set-figure-style()
-
-  // Set equation properties
-  // set-equation-style()
 
   // Import page components
   import "pages/cover-zh.typ": chinese-cover
@@ -174,41 +153,43 @@
     date: date,
     date_en: date_en,
   )
+
   // Set page numbering to Roman for front matter
-  // update-section("摘要") // pretty annoying bug here
-  
   set page(numbering: "I")
   counter(page).update(1)
-    // update-section("ABSTRACT")
-  // Abstract (Chinese)
 
-    // update-section("ABSTRACT")
+  // Abstract (Chinese)
   chinese-abstract(
     abstract_zh: abstract_zh,
     keywords_zh: keywords_zh,
   )
-  // Abstract (English)
 
+  // Abstract (English)
   english-abstract(
     abstract_en: abstract_en,
     keywords_en: keywords_en,
   )
 
   // Table of contents
-  // update-section("目录")
   table-of-contents()
 
   // Set page numbering to Arabic for main content
   set page(numbering: "1")
   counter(page).update(1)
 
+  set text(
+    font: (
+      (name: songti, covers: "latin-in-cjk"),
+      (name: times, covers: regex("[A-Za-z0-9]"))
+    )
+  )
   show: set-heading-style
   show: set-figure-style
   show: set-equation-style
   show: set-list-numbering
   show: set-equation-style
   set par(leading: 0.6em)
-  // set text(font: songti, size: zihao("小四"))
+
   
   // Main content
   body
@@ -228,6 +209,3 @@
   // Declaration of originality
   declaration-content
 }
-
-// This function is no longer needed as we're using state variables
-// for header titles

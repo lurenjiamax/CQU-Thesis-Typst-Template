@@ -11,13 +11,14 @@
     font: "Times New Roman"
   )
   // Abstract title
-  align(center)[
-    #heading(
+  align(center, {
+    show heading: set text(size: zihao("三号"), weight: "bold")
+    heading(
       outlined: true,
       numbering: none,
-      text(weight: "bold", size: zihao("三号"))[ABSTRACT]
+      [ABSTRACT]
     )
-  ]
+  })
 
   // Abstract content
   set text(

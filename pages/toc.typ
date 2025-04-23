@@ -6,10 +6,11 @@
   // Table of contents title
   show: show-cn-fakebold
   align(center)[
+    #show heading: set text(size: zihao("三号"))
     #heading(
       outlined: false,
       numbering: none,
-      text(weight: "bold", size: zihao("三号"))[目 录]
+      [目 录]
     )
   ]
 

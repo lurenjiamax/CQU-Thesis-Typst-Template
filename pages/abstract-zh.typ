@@ -11,16 +11,17 @@
   
   // Set page properties
   set text(
-    font: "simsun"
+    font: songti
   )
   show: show-cn-fakebold
 
   // Abstract title
   align(center)[
+    #show heading: set text(size: zihao("三号"))
     #heading(
       outlined: true,
       numbering: none,
-      text(weight: "bold", size: zihao("三号"))[摘 要],
+      [摘 要],
     )
   ]
 

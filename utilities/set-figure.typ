@@ -32,10 +32,10 @@
 
   // Table caption style
   // You will need to mannually construct a three-line-table
-  set table(stroke: none)
   show figure.where(kind: table): tab => {
     set align(center)
     set grid(inset: 0.6em)
+    set table(stroke: none, inset: 0.4em)
     grid(
       rows: (auto, auto),
       tab.caption,

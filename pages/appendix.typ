@@ -4,10 +4,11 @@
 
 #let appendix-content = {
   // 附录标题
+  show heading: set text(size: zihao("三号"))
   heading(
     outlined: true,
     numbering: none,
-    text(weight: "bold", size: zihao("三号"))[附录A：XX公式的推导]
+    [附录A：XX公式的推导]
   )
 
   // 附录内容需要在这里添加

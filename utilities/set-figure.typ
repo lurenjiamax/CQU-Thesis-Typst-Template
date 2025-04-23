@@ -1,10 +1,10 @@
-// Figure and table style settings for CQU thesis
+// 重庆大学论文图表样式设置
 #import "@preview/metalogo:1.0.2": TeX, LaTeX
 #import "../variable/cqu-variable.typ": *
 
-// Set figure styles according to CQU requirements
+// 图表样式
 #let set-figure-style(body) = {
-  // Figure caption style
+  // 图片标题样式
   set text(
     font: (
       (name: songti, covers: "latin-in-cjk"),
@@ -13,9 +13,10 @@
     size: zihao("五号"),
   )
   set figure(supplement: auto, numbering: "1.1.1.1.1.1")
-  set figure(numbering: num => 
+  set figure(numbering: num =>
     str(counter(heading).get().at(0)) + "." + str(num)
-  ) 
+  )
+  // 图片的上下间隔
   show figure: set block(
     above: 2em,
     below: 2em
@@ -30,8 +31,8 @@
     )
   }
 
-  // Table caption style
-  // You will need to mannually construct a three-line-table
+  // 表格标题样式
+  // 你需要手动构建三线表
   show figure.where(kind: table): tab => {
     set align(center)
     set grid(inset: 0.6em)
@@ -45,9 +46,9 @@
   body
 }
 
-// Set equation styles according to CQU requirements
+// 公式样式
 #let set-equation-style(body) = {
-  set math.equation(numbering: num => 
+  set math.equation(numbering: num =>
     "(" + (str(counter(heading).get().at(0)) + "." + str(num)) + ")"
   )
   body

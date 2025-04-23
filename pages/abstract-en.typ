@@ -1,4 +1,4 @@
-// English abstract page for CQU thesis
+// 重庆大学论文英文摘要页
 
 #import "../variable/cqu-variable.typ": *
 
@@ -6,11 +6,11 @@
   abstract_en: [],
   keywords_en: (),
 ) = {
-  // Set page properties
+  // 设置页面属性
   set text(
     font: "Times New Roman"
   )
-  // Abstract title
+  // 摘要标题
   align(center, {
     show heading: set text(size: zihao("三号"), weight: "bold")
     heading(
@@ -20,7 +20,7 @@
     )
   })
 
-  // Abstract content
+  // 摘要内容
   set text(
     lang: "en",
   )
@@ -29,10 +29,8 @@
 
   v(1em)
 
-  // Keywords
+  // 关键词
   [#text(weight: "bold", size: zihao("小四"))[Key words]: #keywords_en.join(";")]
 
   pagebreak()
 }
-
-// The English abstract will be inserted in the main template

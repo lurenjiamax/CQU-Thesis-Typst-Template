@@ -1,11 +1,11 @@
-// CQU Undergraduate Thesis Template
-// Based on the LaTeX template from CQUThesis
+// 重庆大学本科生毕业论文模板
+// 基于CQUThesis的LaTeX模板改编
 
-// Bold for CJK
+// 中日韩文字加粗处理
 #import "@preview/cuti:0.3.0": show-cn-fakebold
 #show: show-cn-fakebold
 
-// Import necessary utilities
+// 必要的工具函数
 #import "utilities/set-heading.typ": *
 #import "utilities/set-figure.typ": *
 #import "utilities/set-numbering.typ": *
@@ -14,13 +14,12 @@
 #import "utilities/indent-funs.typ": *
 #import "utilities/bib-cite.typ": *
 
-// Import variables
+// 变量
 #import "variable/cqu-variable.typ": *
 
-// Define state variables for header and footer
+// 页眉
 #let current-section = state("current-section", none)
 
-// Main template function
 #let project(
   title: "",
   title_en: "",
@@ -44,32 +43,32 @@
   bibliography_file: none,
   body,
 ) = {
-  // Set document properties
+  // 设置文档属性
   set document(
     title: title,
     author: author,
   )
 
-  // Function to update current section title
+  // 更新当前章节标题的函数
   let update-section(title) = {
     current-section.update(title)
   }
 
-  // Set up header and footer for different document sections
+  // 为不同文档部分设置页眉和页脚
   show heading: it => {
     if it.level == 1 {
       update-section(it.body)
-      // It just works, don't remove this line.
-      // Otherwise the header will be displayed in the next page
+      // 这行代码很重要，请勿删除
+      // 否则页眉将显示在下一页
       set page(header: "abc")
-    } 
+    }
     it
   }
 
-  // Set heading spacing in abstract and toc
+  // 设置摘要和目录中的标题间距
   show heading: set block(below: 1em, above: 2em)
 
-  // Define header and footer content
+  // 定义页眉和页脚内容
   let header-content = context {
     let section = current-section.get()
     if section != none {
@@ -80,7 +79,7 @@
       )
       v(-0.9em)
       line(length: 100%, stroke: 1pt)
-      
+
     }
   }
 
@@ -91,7 +90,7 @@
     }
   }
 
-  // Set page properties
+  // 设置页面属性
   set page(
     paper: "a4",
     margin: (
@@ -107,20 +106,20 @@
     numbering: "1",
   )
 
-  // Set text properties
+  // 设置文本属性
   set text(
     size: 12pt,
     lang: "zh",
   )
 
-  // Set paragraph properties
+  // 设置段落属性
   set par(
     leading: 0.8em,
     justify: true,
     first-line-indent: (amount: 2em, all: true),
   )
 
-  // Import page components
+  // 导入页面组件
   import "pages/cover-zh.typ": chinese-cover
   import "pages/cover-en.typ": english-cover
   import "pages/abstract-zh.typ": chinese-abstract
@@ -130,7 +129,7 @@
   import "pages/acknowledgement.typ": acknowledgement-content
   import "pages/declaration.typ": declaration-content
 
-  // Cover page (Chinese)
+  // 中文封面页
   chinese-cover(
     title: title,
     author: author,
@@ -142,7 +141,7 @@
     date: date,
   )
 
-  // Cover page (English)
+  // 英文封面页
   english-cover(
     title_en: title_en,
     author_en: author_en,
@@ -154,26 +153,26 @@
     date_en: date_en,
   )
 
-  // Set page numbering to Roman for front matter
+  // 为前置部分设置罗马数字页码
   set page(numbering: "I")
   counter(page).update(1)
 
-  // Abstract (Chinese)
+  // 中文摘要
   chinese-abstract(
     abstract_zh: abstract_zh,
     keywords_zh: keywords_zh,
   )
 
-  // Abstract (English)
+  // 英文摘要
   english-abstract(
     abstract_en: abstract_en,
     keywords_en: keywords_en,
   )
 
-  // Table of contents
+  // 目录
   table-of-contents()
 
-  // Set page numbering to Arabic for main content
+  // 为正文部分设置阿拉伯数字页码
   set page(numbering: "1")
   counter(page).update(1)
 
@@ -190,22 +189,22 @@
   show: set-equation-style
   set par(leading: 0.6em)
 
-  
-  // Main content
+
+  // 正文内容
   body
 
-  // References
+  // 参考文献
   if bibliography_file != none {
     import "pages/references.typ": references
     references(bibliography_file)
   }
 
-  // Appendix
+  // 附录
   appendix-content
 
-  // Acknowledgements
+  // 致谢
   acknowledgement-content
 
-  // Declaration of originality
+  // 原创性声明
   declaration-content
 }

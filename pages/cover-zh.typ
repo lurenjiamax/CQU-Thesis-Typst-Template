@@ -1,4 +1,4 @@
-// Chinese cover page for CQU thesis
+// 重庆大学论文中文封面页
 
 #import "../variable/cqu-variable.typ": *
 #import "@preview/cuti:0.3.0": show-cn-fakebold
@@ -13,7 +13,7 @@
   department: "",
   date: (2024, 6),
 ) = {
-  // Set page properties for cover
+  // 设置封面页面属性
   set page(
     margin: (
       top: 5cm,
@@ -28,10 +28,9 @@
     weight: "bold"
   )
 
-  // show: show-cn-fakebold
-  // No header/footer on cover page
+  show: show-cn-fakebold
 
-  // Title section
+  // 标题部分
   align(center)[
     #text(size: zihao("小二"))[重庆大学本科学生毕业论文（设计）]
   ]
@@ -44,15 +43,14 @@
 
   v(2em)
 
-  // University logo
+  // 学校标志
   align(center)[
-    // Placeholder for logo - replace with actual logo
     #image("../assets/cqu-logo.png", width: 5cm)
   ]
 
   v(2em)
 
-  // Author information
+  // 作者信息
   align(center)[
     #text(size: zihao("四号"))[
       #table(
@@ -71,7 +69,7 @@
 
   v(2em)
 
-  // Department and date
+  // 院系和日期
   align(center)[
     #text(weight: "bold", size: zihao("小二"))[重庆大学#department]
   ]
@@ -84,5 +82,3 @@
 
   pagebreak()
 }
-
-// The cover will be inserted in the main template

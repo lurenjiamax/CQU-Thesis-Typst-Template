@@ -1,4 +1,4 @@
-// Chinese abstract page for CQU thesis
+// 重庆大学论文中文摘要页
 #import "@preview/cuti:0.3.0": show-cn-fakebold
 #show: show-cn-fakebold
 
@@ -8,14 +8,14 @@
   abstract_zh: [],
   keywords_zh: (),
 ) = {
-  
-  // Set page properties
+
+  // 设置页面属性
   set text(
     font: songti
   )
   show: show-cn-fakebold
 
-  // Abstract title
+  // 摘要标题
   align(center)[
     #show heading: set text(size: zihao("三号"))
     #heading(
@@ -29,10 +29,8 @@
 
   v(1em)
 
-  // Keywords
+  // 关键词
   [#text(weight: "bold", size: zihao("小四"))[关键词]：#keywords_zh.join("；")]
 
   pagebreak()
 }
-
-// The Chinese abstract will be inserted in the main template

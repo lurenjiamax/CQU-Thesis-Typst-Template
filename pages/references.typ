@@ -1,9 +1,9 @@
-// References page for CQU thesis
+// 重庆大学论文参考文献页
 
 #import "../variable/cqu-variable.typ": *
 
 #let references(bibliography_file) = {
-  // Set page header
+  // 设置页眉
   set page(
     header: [
       #grid(
@@ -13,24 +13,24 @@
       )
       #line(length: 100%, stroke: 0.5pt)
     ],
-    // footer: align(center)[#counter(page).display()],
+    // 页脚: align(center)[#counter(page).display()],
   )
-  
-  // References title
+
+  // 参考文献标题
   heading(
     outlined: true,
     numbering: none,
     text(font: heiti, size: zihao("三号"))[参考文献]
   )
-  
-  // Set bibliography style
+
+  // 设置参考文献样式
   set bibliography(
     style: "../bib/gb-t-7714-2015-numeric.csl",
     title: none,
   )
-  
-  // Display bibliography
+
+  // 显示参考文献
   bibliography(bibliography_file)
-  
+
   pagebreak()
 }

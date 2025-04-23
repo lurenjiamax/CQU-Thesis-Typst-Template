@@ -1,4 +1,4 @@
-// Three-line table utility for CQU thesis
+// 重庆大学论文三线表工具
 #import "../variable/cqu-variable.typ": *
 #let toprule = table.hline(stroke: 0.08em)
 #let bottomrule = toprule

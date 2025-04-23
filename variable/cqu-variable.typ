@@ -1,11 +1,11 @@
-// CQU Thesis Variables
+// 重庆大学论文变量
 
-// Font definitions
+// 字体定义
 #let songti = "simsun"
 #let heiti = "simhei"
 #let times = "Times New Roman"
 
-// Font sizes (following Chinese typography conventions)
+// 字号大小（遵循中文排版规范）
 #let font-sizes = (
   "初号": 42pt,
   "小初": 36pt,
@@ -25,7 +25,7 @@
   "八号": 5pt
 )
 
-// Function to convert Chinese font size name to pt
+// 将中文字号名称转换为pt的函数
 #let zihao(size) = {
   let sizes = (
     "初号": 42pt,
@@ -56,17 +56,17 @@
   }
 }
 
-// Section numbering format
+// 章节编号格式
 #let section-numbering = "1"
 #let subsection-numbering = "1.1"
 #let subsubsection-numbering = "1.1.1"
 
-// Figure and table numbering format
+// 图表编号格式
 #let figure-numbering = "1-1"
 #let table-numbering = "1-1"
 #let equation-numbering = "(1-1)"
 
-// Default margins
+// 默认页边距
 #let default-margins = (
   top: 2.5cm,
   bottom: 2.5cm,
@@ -74,18 +74,18 @@
   right: 3cm,
 )
 
-// Line spacing
+// 行间距
 #let line-spacing = 1.25em
 
-// Paragraph indentation
+// 段落缩进
 #let paragraph-indent = 2em
 
-// Header and footer settings
+// 页眉和页脚设置
 #let header-font-size = 10.5pt
 #let footer-font-size = 10.5pt
 #let header-rule-thickness = 0.5pt
 
-// Function to format Chinese date
+// 格式化中文日期的函数
 #let format-chinese-date(date) = {
   let year = date.at(0)
   let month = date.at(1)
@@ -126,7 +126,7 @@
   return chinese-year + "年" + chinese-month + "月"
 }
 
-// Function to format English date
+// 格式化英文日期的函数
 #let format-english-date(date) = {
   let year = date.at(0)
   let month = date.at(1)

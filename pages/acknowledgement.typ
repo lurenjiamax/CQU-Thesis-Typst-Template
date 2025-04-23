@@ -1,16 +1,17 @@
-// Acknowledgement page for CQU thesis
+// 重庆大学论文致谢页
 
 #import "../variable/cqu-variable.typ": *
 
 #let acknowledgement-content = {
-  // Acknowledgement title
+  // 致谢标题
+
   heading(
     outlined: true,
     numbering: none,
     text(weight: "bold", size: zihao("三号"))[致 谢]
   )
 
-  // Acknowledgement content
+  // 致谢内容
   set text(
     size: zihao("小四"),
   )

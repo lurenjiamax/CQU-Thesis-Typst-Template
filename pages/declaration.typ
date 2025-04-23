@@ -1,16 +1,16 @@
-// Declaration of originality page for CQU thesis
+// 重庆大学论文原创性声明页
 
 #import "../variable/cqu-variable.typ": *
 
 #let declaration-content = {
-  // No header/footer on declaration page
+  // 声明页无页眉页脚
   set page(
     header: none,
     footer: none,
     numbering: none,
   )
 
-  // Declaration title
+  // 声明标题
   align(center)[
     #text(weight: "bold", size: zihao("三号"))[
       原创性声明
@@ -19,7 +19,7 @@
 
   v(1em)
 
-  // Declaration content
+  // 声明内容
   set text(
     size: zihao("小四"),
   )
@@ -41,7 +41,7 @@
 
   v(2em)
 
-  // Authorization title
+  // 授权标题
   align(center)[
     #text(weight: "bold", size: zihao("三号"))[
       使用授权书
@@ -50,7 +50,7 @@
 
   v(1em)
 
-  // Authorization content
+  // 授权内容
   [本论文（设计）作者完全了解学校有关保留、使用论文（设计）的规定，同意学校保留并向国家有关部门或机构送交论文（设计）复印件和电子版，允许论文（设计）被查阅和借阅。本人授权重庆大学将本论文（设计）的全部或部分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制方式保存和汇编本论文（设计）。]
 
   v(2em)

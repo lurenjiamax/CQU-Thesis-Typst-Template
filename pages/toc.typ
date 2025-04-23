@@ -1,9 +1,9 @@
-// Table of contents for CQU thesis
+// 重庆大学论文目录
 #import "@preview/cuti:0.3.0": show-cn-fakebold
 #import "../variable/cqu-variable.typ": *
 
 #let table-of-contents() = {
-  // Table of contents title
+  // 目录标题
   show: show-cn-fakebold
   align(center)[
     #show heading: set text(size: zihao("三号"))
@@ -14,7 +14,7 @@
     )
   ]
 
-  // Configure TOC style
+  // 目录样式
   set outline(
     indent: 2em,
     title: none,
@@ -40,7 +40,7 @@
     level: 3
   ): set text(font: songti, size: zihao("五号"))
 
-  // Display TOC, Maxium depth is 3.
+  // 显示目录，最大深度为3级
   outline(
     title: none,
     depth: 3,

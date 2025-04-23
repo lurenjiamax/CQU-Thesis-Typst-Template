@@ -1,16 +1,16 @@
-// Numbering style settings for CQU thesis
+// 重庆大学论文编号样式设置
 
 #import "../variable/cqu-variable.typ": *
 
-// Set numbering styles for lists
+// 设置列表的编号样式
 #let set-list-numbering(body) = {
-  // Ordered list
+  // 有序列表
   set enum(
     numbering: "1.",
     indent: 2em,
   )
-  
-  // Unordered list
+
+  // 无序列表
   set list(
     indent: 2em,
     marker: "•",

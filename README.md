@@ -1,6 +1,6 @@
 # 重庆大学本科生毕业论文 Typst 模板
 
-本项目为重庆大学本科生毕业论文的 Typst 模板，基于重庆大学本科生毕业论文 LaTeX 模板制作。
+本项目为重庆大学本科生毕业论文的 Typst 模板, 基于重庆大学本科生毕业论文 LaTeX 模板制作, 后续可能会陆续添加对研究生和博士生毕业论文的支持.
 
 ## 简介
 
@@ -86,6 +86,21 @@ CQU-typst-template/
 )
 ```
 
+## 引用格式
+三种引用格式, 放置在bib文件夹下: 
+- gb-t-7714-2015-numeric (默认)
+- gb-t-7714-2015-numeric-bilingual
+- gb-t-7714-2015-numeric-bilingual-no-uppercase-no-url-doi
+
+如果需要其他格式, 可以到https://zotero-chinese.com/styles/ 下载, 并且在`pages/references.typ`中修改.
+
+```bash
+bibliography(
+    style: "../bib/gb-t-7714-2015-numeric.csl",
+    title: none,
+)
+```
+
 ## 页眉和页脚
 
 本模板自动为文档添加页眉和页脚：
@@ -122,3 +137,9 @@ CQU-typst-template/
 ## 许可
 
 本项目采用 MIT 许可证。
+
+## 致谢
+
+- 重大Latex模板: https://github.com/nanmu42/CQUThesis
+- HUST华中科技大学 Typst模板: https://github.com/nanmu42/CQUThesis
+- CSL引用格式文件: https://github.com/zotero-chinese/styles

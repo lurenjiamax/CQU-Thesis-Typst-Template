@@ -88,16 +88,16 @@
   caption: "内热源沿径向的分布Abc"
 )
 
-// 三线表是这样练成的, 注意使用toprule, midrule, bottomrule
+使用三线表的话跟latex类似, 只不过更加简单. 注意使用toprule, midrule, bottomrule. 
+
 #figure(
   table(
     columns: 4,
     toprule,
     table.header(
-    [感应频率], [感应发生器功率], [工件移动速度], [感应圈与零件间隙],
+    [感应频率\ （KHz）], [感应发生器功率\ （$\% #math.times $80Kw）], [工件移动速度\ （mm/min）], [感应圈与零件间隙\ （mm）],
     ),
     midrule,
-    [（KHz）], [$\% #math.times $80Kw], [mm/min], [mm],
     [250], [88], [5900], [1.65],
     [250], [88], [5900], [1.65],
     [250], [88], [5900], [1.65],
@@ -105,24 +105,25 @@
     bottomrule
   ),
   caption: "高频感应加热的基本参数"
-)
+)<table_basic_thing>
 
+对于表格`table`和图`image`, 都需要用`#figure`包裹起来才是正式的图表, 才可以设置标签`<table_basic_thing>`, 并用`@table_basic_thing`来引用 @table_basic_thing . 
 
 == 公式格式
 === Typst
-你可以使用Typst的公式格式: 
+你可以使用Typst的公式格式, 后面用`<formula_abc>`来设置标签: 
 $$$
  1/mu nabla^2A - j omega sigma A - nabla(1/mu) 
 #math.times (nabla #math.times A)+J_0=0 
-$$$
+$$$<formula_abc>
+然后使用`@formula_abc`对 @formula_abc 进行引用
 
 === Latex
 也可以使用Latex的语法: 
 
 #mitex(`
 \frac{1}{\mu} \nabla^2A - j \omega \sigma A -\nabla(\frac{1}{\mu}) \times(\nabla \times A)+J_0=0 
-`
-)
+`)
 
 == 本章小结
 

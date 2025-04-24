@@ -1,10 +1,10 @@
 // 重庆大学论文参考文献页
 
 #import "../variable/cqu-variable.typ": *
+#import "@preview/cuti:0.3.0": show-cn-fakebold
 
 #let references(bibliography_file) = {
-  // 参考文献标题
-  show heading: set text(size: zihao("三号"))
+  show: show-cn-fakebold
   heading(
     outlined: true,
     numbering: none,

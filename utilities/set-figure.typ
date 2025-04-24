@@ -8,7 +8,7 @@
   set text(
     font: (
       (name: songti, covers: "latin-in-cjk"),
-      (name: times, covers: regex("[A-Za-z]")),
+      (name: timesromance, covers: regex("[A-Za-z]")),
     ),
     size: zihao("五号"),
   )

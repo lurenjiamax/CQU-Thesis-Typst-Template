@@ -1,11 +1,21 @@
-// 重庆大学论文变量
+// 重庆大学论文变量, 如有必要可以到`cqu-template.typ`中修改.
 
 // 字体定义
 #let songti = "simsun"
 #let heiti = "simhei"
-#let times = "Times New Roman"
+#let timesromance = "Times New Roman"
 
-// 字号大小（遵循中文排版规范）
+#let default-song = (
+  (name: timesromance, covers: regex("[A-Za-z0-9]")),
+  (name: songti, covers: "latin-in-cjk"),
+)
+
+#let default-hei = (
+  (name: timesromance, covers: regex("[A-Za-z0-9]")),
+  (name: heiti, covers: "latin-in-cjk"),
+)
+
+// 字号大小, 磅和pt是一样的
 #let font-sizes = (
   "初号": 42pt,
   "小初": 36pt,
@@ -25,7 +35,6 @@
   "八号": 5pt
 )
 
-// 将中文字号名称转换为pt的函数
 #let zihao(size) = {
   let sizes = (
     "初号": 42pt,
@@ -56,33 +65,27 @@
   }
 }
 
-// 章节编号格式
-#let section-numbering = "1"
-#let subsection-numbering = "1.1"
-#let subsubsection-numbering = "1.1.1"
-
-// 图表编号格式
-#let figure-numbering = "1-1"
-#let table-numbering = "1-1"
-#let equation-numbering = "(1-1)"
-
 // 默认页边距
 #let default-margins = (
-  top: 2.5cm,
-  bottom: 2.5cm,
+  top: 5cm,
+  bottom: 5cm,
   left: 3cm,
   right: 3cm,
 )
 
 // 行间距
-#let line-spacing = 1.25em
+#let line-spacing = 0.6em
 
-// 段落缩进
+// 段间距
+#let paragraph-spacing = 0.6em
+
+// 段落首行缩进
 #let paragraph-indent = 2em
 
 // 页眉和页脚设置
-#let header-font-size = 10.5pt
+#let header-font-size = 9pt
 #let footer-font-size = 10.5pt
+#let header-spacing = 0.4em
 #let header-rule-thickness = 0.5pt
 
 // 格式化中文日期的函数
@@ -157,12 +160,6 @@
   return year + "年" + month + "月"
 }
 
-#let default_header(title) = {
-  let left = "重庆大学本科学生毕业论文（设计）"
-  let right = title
-  return grid(
-    columns: (1fr, 1fr),
-    align(left),
-    align(right),
-  )
-}
+#let empty_underline(width) = {
+  box(width: width, stroke: (bottom: 0.5pt), none)
+} 

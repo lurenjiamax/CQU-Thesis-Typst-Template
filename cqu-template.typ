@@ -18,7 +18,7 @@
 #import "variable/cqu-variable.typ": *
 
 // 页眉
-#let current-section = state("current-section", none)
+#let current-section = state("current-section", (0, none))
 
 #let project(
   title: "",
@@ -48,16 +48,23 @@
     title: title,
     author: author,
   )
-
-  // 更新当前章节标题的函数
-  let update-section(title) = {
-    current-section.update(title)
-  }
+  // 设置文本属性
+  // 英文Times New Roman; 中文宋体
+  set text(
+    font: default-song,
+    size: zihao("小四"),
+    lang: "zh",
+  )
 
   // 为不同文档部分设置页眉和页脚
   show heading: it => {
     if it.level == 1 {
-      update-section(it.body)
+      if it.numbering != none {
+        let n = counter(heading).display()
+        current-section.update((n,it.body))
+      } else {
+        current-section.update((none,it.body))
+      }
       // 这行代码很重要，请勿删除
       // 否则页眉将显示在下一页
       set page(header: "abc")
@@ -65,27 +72,38 @@
     it
   }
 
-  // 设置摘要和目录中的标题间距
-  show heading: set block(below: 1em, above: 2em)
-
   // 定义页眉和页脚内容
   let header-content = context {
     let section = current-section.get()
-    if section != none {
+    let number = section.at(0)
+    let title = section.at(1)
+    if section != none and title != none{
+      show grid: set block(spacing: header-spacing)
+      show grid: set text(
+        font: default-song,
+        size: header-font-size
+      )
       grid(
         columns: (1fr, 1fr),
-        align(left)[#text(size: zihao("小五"))[重庆大学本科学生毕业论文（设计）]],
-        align(right)[#text(size: zihao("小五"))[#section]],
+        align(left)[重庆大学本科学生毕业论文（设计）],
+        
+        if number == "0" {
+          align(right)[#title]
+        } else {
+          align(right)[#number#h(1em)#title]
+        },
       )
-      v(-0.9em)
-      line(length: 100%, stroke: 1pt)
-
+      line(length: 100%, stroke: header-rule-thickness)
     }
   }
 
   let footer-content = context {
     let section = current-section.get()
-    if section != none {
+    show text: set text(
+      font: default-song,
+      size: footer-font-size
+    )
+    if section.at(1) != none {
       align(center)[#counter(page).display()]
     }
   }
@@ -93,30 +111,25 @@
   // 设置页面属性
   set page(
     paper: "a4",
-    margin: (
-      top: 5cm,
-      bottom: 5cm,
-      left: 3cm,
-      right: 3cm,
-    ),
+    margin: default-margins,
     header-ascent: 45%,
     footer-descent: 25%,
     header: header-content,
     footer: footer-content,
     numbering: "1",
   )
-
-  // 设置文本属性
-  set text(
-    size: 12pt,
-    lang: "zh",
-  )
+  
+  show: set-heading-style
+  show: set-figure-style
+  show: set-equation-style
+  show: set-list-numbering
 
   // 设置段落属性
   set par(
-    leading: 0.8em,
+    leading: line-spacing,
+    spacing: paragraph-spacing,
     justify: true,
-    first-line-indent: (amount: 2em, all: true),
+    first-line-indent: (amount: paragraph-indent, all: true),
   )
 
   // 导入页面组件
@@ -153,7 +166,7 @@
     date_en: date_en,
   )
 
-  // 为前置部分设置罗马数字页码
+  // 前置部分为罗马数字页码
   set page(numbering: "I")
   counter(page).update(1)
 
@@ -172,23 +185,9 @@
   // 目录
   table-of-contents()
 
-  // 为正文部分设置阿拉伯数字页码
+  // 正文部分为阿拉伯数字页码
   set page(numbering: "1")
   counter(page).update(1)
-
-  set text(
-    font: (
-      (name: songti, covers: "latin-in-cjk"),
-      (name: times, covers: regex("[A-Za-z0-9]"))
-    )
-  )
-  show: set-heading-style
-  show: set-figure-style
-  show: set-equation-style
-  show: set-list-numbering
-  show: set-equation-style
-  set par(leading: 0.6em)
-
 
   // 正文内容
   body
@@ -206,5 +205,5 @@
   acknowledgement-content
 
   // 原创性声明
-  declaration-content
+  declaration-content(title)
 }

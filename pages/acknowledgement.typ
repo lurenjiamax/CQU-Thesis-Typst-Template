@@ -1,10 +1,12 @@
 // 重庆大学论文致谢页
 
 #import "../variable/cqu-variable.typ": *
+#import "@preview/cuti:0.3.0": show-cn-fakebold
 
 #let acknowledgement-content = {
-  // 致谢标题
-  show heading: set text(size: zihao("三号"))
+  
+  show: show-cn-fakebold
+
   heading(
     outlined: true,
     numbering: none,

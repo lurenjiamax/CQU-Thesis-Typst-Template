@@ -8,11 +8,12 @@
 ) = {
   // 设置页面属性
   set text(
-    font: "Times New Roman"
+    font: timesromance,
+    lang: "en"
   )
   // 摘要标题
   align(center, {
-    show heading: set text(size: zihao("三号"), weight: "bold")
+    show heading: set text(weight: "bold")
     heading(
       outlined: true,
       numbering: none,
@@ -20,9 +21,9 @@
     )
   })
 
-  // 摘要内容
-  set text(
-    lang: "en",
+  set par(
+    leading: 1em,
+    spacing: 1em
   )
 
   abstract_en

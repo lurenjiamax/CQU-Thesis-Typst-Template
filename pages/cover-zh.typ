@@ -15,16 +15,10 @@
 ) = {
   // 设置封面页面属性
   set page(
-    margin: (
-      top: 5cm,
-      bottom: 5cm,
-      left: 3cm,
-      right: 3cm,
-    ),
     numbering: none,
   )
   set text(
-    font: heiti,
+    font: default-hei,
     weight: "bold"
   )
 

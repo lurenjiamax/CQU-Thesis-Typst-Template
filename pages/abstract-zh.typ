@@ -9,15 +9,10 @@
   keywords_zh: (),
 ) = {
 
-  // 设置页面属性
-  set text(
-    font: songti
-  )
   show: show-cn-fakebold
 
   // 摘要标题
   align(center)[
-    #show heading: set text(size: zihao("三号"))
     #heading(
       outlined: true,
       numbering: none,

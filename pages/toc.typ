@@ -5,14 +5,19 @@
 #let table-of-contents() = {
   // 目录标题
   show: show-cn-fakebold
+
   align(center)[
-    #show heading: set text(size: zihao("三号"))
     #heading(
       outlined: false,
       numbering: none,
       [目 录]
     )
   ]
+
+  set par(
+    spacing: 1em,
+    leading: 0.8em
+  )
 
   // 目录样式
   set outline(
@@ -22,28 +27,22 @@
 
   show outline.entry.where(
     level: 1
-  ): set text(font: (
-    (name: times, covers: regex("[A-Z]")),
-    (name: heiti, covers: "latin-in-cjk"),
-    (name: times, covers: regex("[0-9]")),
-  ), size: zihao("四号")
+  ): set text(font: default-hei, size: zihao("四号")
   )
 
   show outline.entry.where(
     level: 2
-  ): set text(font: (
-    heiti,
-    (name: times, covers: regex("[0-9]")),
-    ), size: zihao("五号"))
+  ): set text(font: default-hei, size: zihao("五号"))
 
   show outline.entry.where(
     level: 3
-  ): set text(font: songti, size: zihao("五号"))
+  ): set text(font: default-song, size: zihao("五号"))
 
-  // 显示目录，最大深度为3级
+  // 目录最大深度为3级
   outline(
     title: none,
     depth: 3,
+    target: selector(heading)
   )
 
   pagebreak()

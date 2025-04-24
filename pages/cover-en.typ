@@ -14,24 +14,14 @@
 ) = {
   // 设置封面页面属性
   set page(
-    // margin: (
-      // top: 5cm,
-      // bottom: 5cm,
-    //   left: 3cm,
-    //   right: 3cm,
-    // ),
     numbering: none,
   )
 
   // 设置英文文本属性
   set text(
-    font: "Times New Roman",
+    font: timesromance,
     weight: "bold",
     lang: "en",
-  )
-
-  set par(
-    spacing: 0.6em
   )
 
   align(center)[

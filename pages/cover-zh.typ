@@ -37,7 +37,6 @@
 
   v(2em)
 
-  // 学校标志
   align(center)[
     #image("../assets/cqu-logo.png", width: 5cm)
   ]
@@ -45,6 +44,14 @@
   v(2em)
 
   // 作者信息
+  let table_rows = (
+    [学#h(2em)生：#author],
+    [学#h(2em)号：#student_id],
+    [指导教师：#supervisor],
+    if assist_supervisor != none [助理指导教师：#assist_supervisor] else [],
+    [专#h(2em)业：#major],
+  )
+
   align(center)[
     #text(size: zihao("四号"))[
       #table(
@@ -52,11 +59,7 @@
         align: left,
         stroke: none,
         inset: 5pt,
-        [学#h(2em)生：#author],
-        [学#h(2em)号：#student_id],
-        [指导教师：#supervisor],
-        if assist_supervisor != none [助理指导教师：#assist_supervisor],
-        [专#h(2em)业：#major],
+        ..table_rows.filter(x => x != [])
       )
     ]
   ]

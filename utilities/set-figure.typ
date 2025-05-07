@@ -5,15 +5,15 @@
 // 图表样式
 #let set-figure-style(body) = {
   // 图片标题样式
-  set text(
+  show figure: set text(
     font: (
       (name: songti, covers: "latin-in-cjk"),
       (name: timesromance, covers: regex("[A-Za-z]")),
     ),
     size: zihao("五号"),
   )
-  set figure(supplement: auto, numbering: "1.1.1.1.1.1")
-  set figure(numbering: num =>
+  show figure: set figure(supplement: auto, numbering: "1.1.1.1.1.1")
+  show figure: set figure(numbering: num =>
     str(counter(heading).get().at(0)) + "." + str(num)
   )
   // 图片的上下间隔

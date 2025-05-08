@@ -4,15 +4,13 @@
 // 中日韩文字加粗处理
 #import "@preview/cuti:0.3.0": show-cn-fakebold
 #show: show-cn-fakebold
-
+#import "@preview/hydra:0.6.1": hydra
 // 必要的工具函数
 #import "utilities/set-heading.typ": *
 #import "utilities/set-figure.typ": *
 #import "utilities/set-numbering.typ": *
 #import "utilities/set-numbering.typ": *
 #import "utilities/three-line-table.typ": *
-#import "utilities/indent-funs.typ": *
-#import "utilities/bib-cite.typ": *
 
 // 变量
 #import "variable/cqu-variable.typ": *
@@ -65,9 +63,6 @@
       } else {
         current-section.update((none,it.body))
       }
-      // 这行代码很重要，请勿删除
-      // 否则页眉将显示在下一页
-      set page(header: "abc")
     }
     it
   }
@@ -84,14 +79,9 @@
         size: header-font-size
       )
       grid(
-        columns: (1fr, 1fr),
+        columns: (0.5fr, 0.5fr),
         align(left)[重庆大学本科学生毕业论文（设计）],
-        
-        if number == "0" {
-          align(right)[#title]
-        } else {
-          align(right)[#number#h(1em)#title]
-        },
+        align(right)[#hydra(1,skip-starting:false)]
       )
       line(length: 100%, stroke: header-rule-thickness)
     }

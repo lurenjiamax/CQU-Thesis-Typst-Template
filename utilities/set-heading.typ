@@ -20,14 +20,14 @@
   show heading.where(level: 2): set text(font: (
       (name: timesromance, covers: regex("[A-Za-z0-9]")),
       (name: heiti , covers: "latin-in-cjk"),
-    ), size: zihao("小三"))
-  show heading.where(level: 2): set block(outset: 0.5em, below: 0.8em, above: 2em)
+    ), size: zihao("小三"), weight: "regular")
+  show heading.where(level: 2): set block(outset: 0.5em, below: 0.8em, above: 1.4em)
 
   // 三级标题（小小节）：黑体，四号
   show heading.where(level: 3): set text(font: (
       (name: timesromance, covers: regex("[A-Za-z0-9]")),
       (name: heiti , covers: "latin-in-cjk"),
-    ), size: zihao("四号"))
+    ), size: zihao("四号"), weight: "regular")
   show heading.where(level: 3): set block(outset: 0.5em, below: 0.6em, above: 0.6em)
 
   body

@@ -5,6 +5,9 @@
 
 #let references(bibliography_file) = {
   show: show-cn-fakebold
+  show bibliography: set text(
+    font: default-song
+  )
   heading(
     outlined: true,
     numbering: none,

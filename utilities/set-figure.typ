@@ -6,10 +6,7 @@
 #let set-figure-style(body) = {
   // 图片标题样式
   show figure: set text(
-    font: (
-      (name: songti, covers: "latin-in-cjk"),
-      (name: timesromance, covers: regex("[A-Za-z]")),
-    ),
+    font: default-song,
     size: zihao("五号"),
   )
   show figure: set figure(supplement: auto, numbering: "1.1.1.1.1.1")
@@ -18,15 +15,17 @@
   )
   // 图片的上下间隔
   show figure: set block(
-    above: 2em,
-    below: 2em
+    above: 1.2em,
+    below: 1.2em,
+    breakable: true
   )
   show figure: fig => {
     set align(center)
     set grid(inset: 0.6em)
     grid(
+      align: center,
       rows: (auto, auto),
-      fig.body,
+      align(center)[#fig.body],
       fig.caption,
     )
   }
@@ -35,7 +34,7 @@
   // 你需要手动构建三线表
   show figure.where(kind: table): tab => {
     set align(center)
-    set grid(inset: 0.6em)
+    set grid(inset: 0.3em)
     set table(stroke: none, inset: 0.4em)
     grid(
       rows: (auto, auto),

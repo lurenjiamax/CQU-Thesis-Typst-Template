@@ -13,7 +13,7 @@
   )
   // 摘要标题
   align(center, {
-    show heading: set text(weight: "bold")
+    show heading: set text(weight: "bold", size: zihao("三号"))
     heading(
       outlined: true,
       numbering: none,
@@ -31,7 +31,7 @@
   v(1em)
 
   // 关键词
-  [#text(weight: "bold", size: zihao("小四"))[Key words]: #keywords_en.join(";")]
+  [#text(font: timesromance, weight: "bold", size: zihao("小四"))[Key words]: #keywords_en.join(";")]
 
   pagebreak()
 }

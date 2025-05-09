@@ -25,7 +25,7 @@
   v(1em)
 
   // 关键词
-  [#text(weight: "bold", size: zihao("小四"))[关键词]：#keywords_zh.join("；")]
+  [#text(font: heiti, size: zihao("小四"))[关键词]：#keywords_zh.join("；")]
 
   pagebreak()
 }

@@ -10,7 +10,7 @@
     #heading(
       outlined: false,
       numbering: none,
-      [目 录]
+      [目#h(1em)录] // 虽然要求空两个字符, 但是我发现那样不太好看
     )
   ]
 

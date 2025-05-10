@@ -8,6 +8,7 @@
   show bibliography: set text(
     font: default-song
   )
+  
   heading(
     outlined: true,
     numbering: none,

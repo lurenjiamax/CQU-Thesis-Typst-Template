@@ -1,5 +1,4 @@
 // 重庆大学论文图表样式设置
-#import "@preview/metalogo:1.0.2": TeX, LaTeX
 #import "../variable/cqu-variable.typ": *
 
 // 图表样式
@@ -35,6 +34,7 @@
   show figure.where(kind: table): tab => {
     set align(center)
     set grid(inset: 0.3em)
+    show grid: set block(breakable: false) // 禁止表格跨页
     set table(stroke: none, inset: 0.4em)
     grid(
       rows: (auto, auto),

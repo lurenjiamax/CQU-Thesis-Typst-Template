@@ -1,7 +1,6 @@
 // 重庆大学论文中文封面页
 
 #import "../variable/cqu-variable.typ": *
-#import "@preview/cuti:0.3.0": show-cn-fakebold
 
 #let chinese-cover(
   title: "",
@@ -17,31 +16,33 @@
   set page(
     numbering: none,
   )
-  set text(
+  show text: set text(
     font: default-hei,
-    weight: "bold"
   )
 
-  show: show-cn-fakebold
+  v(12pt) // 顶部12pt
 
   // 标题部分
-  align(center)[
+  align(top + center)[
     #text(size: zihao("小二"))[重庆大学本科学生毕业论文（设计）]
   ]
 
-  v(5em)
+  v(6em)
 
-  align(center)[
+  align(top + center)[
+    #set par(leading: 0.6em)
     #text(size: zihao("二号"))[#title]
   ]
 
-  v(2em)
+  v(4em)
 
-  align(center)[
-    #image("../assets/cqu-logo.png", width: 5cm)
+  place(center)[
+    // x 99.21pt
+    // y 412.43pt
+    #image("../assets/cqu-logo.jpg", width: 4.26cm)
   ]
 
-  v(2em)
+  v(4em)
 
   // 作者信息
   let table_rows = (
@@ -52,29 +53,28 @@
     [专#h(2em)业：#major],
   )
 
-  align(center)[
-    #text(size: zihao("四号"))[
+  align(bottom + center)[
+    #text(size: zihao("三号"))[
       #table(
         columns: 1,
         align: left,
+        row-gutter: 21pt,
         stroke: none,
-        inset: 5pt,
+        inset: 0pt,
         ..table_rows.filter(x => x != [])
       )
     ]
   ]
+  let addition_spacing = if assist_supervisor != none { 0em } else { 5em }
 
-  v(2em)
+  v(4em + addition_spacing)
 
   // 院系和日期
-  align(center)[
-    #text(weight: "bold", size: zihao("小二"))[重庆大学#department]
-  ]
-
-  v(1em)
-
-  align(center)[
-    #text(weight: "bold", size: 16pt)[#format-chinese-number-date(date)]
+  align(bottom + center)[
+      #text(size: zihao("小二"))[重庆大学#department]
+      #v(12pt + 1em)
+      #text(size: 16pt)[#format-chinese-number-date(date)]
+      #v(20pt + 1em)
   ]
 
   pagebreak()

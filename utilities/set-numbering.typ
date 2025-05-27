@@ -15,5 +15,17 @@
     indent: 2em,
     marker: "•",
   )
+
+  // 脚注
+  set footnote(
+    numbering: "①",
+  )
+  show footnote.entry: it => {
+    set text(font: default-song, size: zihao("小五"))
+    let number = numbering(it.note.numbering, ..counter(footnote).at(it.note.location()))
+    let body = it.note.body
+
+    [#link(it.note.location())[#number] #body]
+    }
   body
 }

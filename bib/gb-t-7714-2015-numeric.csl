@@ -21,9 +21,9 @@
   </info>
   <locale xml:lang="zh-CN">
     <date form="text">
-      <date-part name="year" suffix="年" range-delimiter="&#8212;"/>
-      <date-part name="month" form="numeric" suffix="月" range-delimiter="&#8212;"/>
-      <date-part name="day" suffix="日" range-delimiter="&#8212;"/>
+      <date-part name="year" suffix="年" range-delimiter="—"/>
+      <date-part name="month" form="numeric" suffix="月" range-delimiter="—"/>
+      <date-part name="day" suffix="日" range-delimiter="—"/>
     </date>
     <terms>
       <term name="edition" form="short">版</term>
@@ -49,11 +49,12 @@
   </macro>
   <!-- 主要责任者 -->
   <macro name="author">
-    <names variable="author">
-      <name>
-        <name-part name="family" text-case="uppercase"/>
+    <names variable="author" et-al-min="4" et-al-use-first="3" et-al-subsequent-min="4" et-al-subsequent-use-first="3">
+      <name delimiter=", " delimiter-precedes-et-al="always">
+        <name-part name="family"/>
         <name-part name="given"/>
       </name>
+      <et-al term="et-al"/>
       <substitute>
         <names variable="composer"/>
         <names variable="illustrator"/>
@@ -86,11 +87,12 @@
   </macro>
   <!-- 专著主要责任者 -->
   <macro name="container-author">
-    <names variable="editor">
-      <name>
-        <name-part name="family" text-case="uppercase"/>
+    <names variable="editor" et-al-min="4" et-al-use-first="3" et-al-subsequent-min="4" et-al-subsequent-use-first="3">
+      <name delimiter=", ">
+        <name-part name="family"/>
         <name-part name="given"/>
       </name>
+      <et-al term="et-al"/>
       <substitute>
         <names variable="editorial-director"/>
         <names variable="collection-editor"/>
@@ -104,10 +106,10 @@
       <group delimiter=": ">
         <choose>
           <if variable="container-title">
-            <text variable="container-title"/>
+            <text variable="container-title" form="long" font-style="italic"/>
           </if>
           <else>
-            <text variable="event"/>
+            <text variable="event" form="long" font-style="italic"/>
           </else>
         </choose>
         <text macro="book-volume"/>
@@ -187,11 +189,12 @@
   </macro>
   <!-- 其他责任者 -->
   <macro name="secondary-contributor">
-    <names variable="translator">
-      <name>
-        <name-part name="family" text-case="uppercase"/>
+    <names variable="translator" et-al-min="4" et-al-use-first="3" et-al-subsequent-min="4" et-al-subsequent-use-first="3">
+      <name delimiter=", ">
+        <name-part name="family"/>
         <name-part name="given"/>
       </name>
+      <et-al term="et-al"/>
       <label form="short" prefix=", "/>
     </names>
   </macro>
@@ -201,7 +204,7 @@
       <group delimiter=": ">
         <group>
           <group delimiter=", ">
-            <text macro="container-title" text-case="title"/>
+            <text macro="container-title" text-case="title" form="long" font-style="italic"/>
             <choose>
               <if type="article-newspaper">
                 <text macro="issued-date"/>
@@ -224,7 +227,7 @@
     <group delimiter=", ">
       <group delimiter=": ">
         <text variable="title"/>
-        <group delimiter="&#8195;">
+        <group delimiter=" ">
           <choose>
             <if variable="container-title" type="paper-conference" match="none">
               <text macro="book-volume"/>
@@ -273,7 +276,7 @@
         <else-if type="bill collection legal_case legislation regulation" match="any">
           <text value="A"/>
         </else-if>
-        <else-if type="book chapter" match="any">
+        <else-if type="book chapter classic entry-dictionary entry-encyclopedia" match="any">
           <text value="M"/>
         </else-if>
         <else-if type="dataset">
@@ -420,14 +423,12 @@
     </choose>
   </macro>
   <citation collapse="citation-number" after-collapse-delimiter=",">
-    <layout vertical-align="sup" delimiter="," prefix="[" suffix="]">
+    <layout delimiter="," prefix="[" suffix="]">
       <text macro="citation-layout"/>
     </layout>
   </citation>
   <bibliography entry-spacing="0" et-al-min="4" et-al-use-first="3" second-field-align="flush">
-    <!-- 取消这部分注释可以使用 CSL-M 的功能支持双语 -->
-    <!-- <layout locale="en"><text variable="citation-number" prefix="[" suffix="]"/><text macro="entry-layout"/></layout> -->
-    <layout>
+    <layout locale="en">
       <text variable="citation-number" prefix="[" suffix="]"/>
       <text macro="entry-layout"/>
     </layout>

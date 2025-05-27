@@ -18,18 +18,22 @@
   )
 
   // 设置英文文本属性
-  set text(
+  show: set text(
     font: timesromance,
     weight: "bold",
     lang: "en",
   )
-
-  align(center)[
+  set par(
+    leading: 0.6em,
+    spacing: 1em,
+  )
+  align(top + center)[
     // 标题部分
+    #v(12pt)
     #text(size: zihao("三号"))[
       Undergraduate Thesis (Design) of Chongqing University
     ]
-    #v(2em)
+    #v(4em)
 
     #text(size: zihao("二号"))[
       #title_en
@@ -37,15 +41,15 @@
     #v(2em)
 
     // 学校标志
-    #image("../assets/cqu-logo.png", width: 5cm)
-    #v(2em)
+    #image("../assets/cqu-logo.jpg", width: 4.26cm)
 
+  ]
+
+  align(bottom + center)[
     // 作者信息
     #text(size: zihao("三号"))[
-      By
-    ]
-
-    #text(size: zihao("三号"))[
+      By \
+      
       #author_en
     ]
 
@@ -53,39 +57,32 @@
 
     #text(size: zihao("三号"))[
       Supervised by
-    ]
 
-    #text(size: zihao("三号"))[
       #supervisor_en
     ]
 
+    // #let assist_supervisor_en = "abc"
     #if assist_supervisor_en != none {
       text(size: zihao("三号"))[
         and
 
-      ]
-
-      text(size: zihao("三号"))[
         #assist_supervisor_en
       ]
+      v(1.5em)
+    } else {
+      v(6em)
     }
+  ]
 
-    #v(2em)
-
+  align(bottom + center)[
     // 院系和学校
     #text(size: zihao("小二"))[
-      #major_en
-    ]
+      #major_en 
 
-    #text(size: zihao("小二"))[
       #department_en
-    ]
 
-    #text(weight: "bold", size: zihao("小二"))[
       Chongqing University
     ]
-
-    #v(1em)
 
     // 日期
     #text(size: zihao("三号"))[
@@ -95,6 +92,7 @@
         format-english-date(date)
       }
     ]
+    #v(20pt + 1em)
   ]
 
   pagebreak()

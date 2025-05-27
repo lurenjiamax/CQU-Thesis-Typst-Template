@@ -11,16 +11,14 @@
 #import "utilities/set-numbering.typ": *
 #import "utilities/set-numbering.typ": *
 #import "utilities/three-line-table.typ": *
+#import "utilities/set-page.typ": *
 
 // 变量
 #import "variable/cqu-variable.typ": *
 
-// 页眉
-#let current-section = state("current-section", (0, none))
-
 #let project(
-  title: "",
-  title_en: "",
+  title: "", // 标题, 不宜超过25字
+  title_en: "", // 不超过10个实词
   author: "",
   author_en: "",
   student_id: "",
@@ -34,11 +32,14 @@
   department_en: "",
   date: (2024, 6),
   date_en: none,
+  double: false, // 是否双面打印
+  gutter: false, // 是否有装订线
   abstract_zh: [],
   abstract_en: [],
   keywords_zh: (),
   keywords_en: (),
   bibliography_file: none,
+  declaration_date: (2024, 6, 10), // 原创性声明日期
   body,
 ) = {
   // 设置文档属性
@@ -54,65 +55,7 @@
     lang: "zh",
   )
 
-  // 为不同文档部分设置页眉和页脚
-  show heading: it => {
-    if it.level == 1 {
-      if it.numbering != none {
-        let n = counter(heading).display()
-        current-section.update((n,it.body))
-      } else {
-        current-section.update((none,it.body))
-      }
-    }
-    it
-  }
-
   // 定义页眉和页脚内容
-  let header-content = context {
-    let section = current-section.get()
-    let number = section.at(0)
-    let title = section.at(1)
-    if section != none and title != none{
-      show grid: set block(spacing: header-spacing)
-      show grid: set text(
-        font: default-song,
-        size: header-font-size
-      )
-      grid(
-        columns: (0.5fr, 0.5fr),
-        align(left)[重庆大学本科学生毕业论文（设计）],
-        align(right)[#hydra(1,skip-starting:false)]
-      )
-      line(length: 100%, stroke: header-rule-thickness)
-    }
-  }
-
-  let footer-content = context {
-    let section = current-section.get()
-    show text: set text(
-      font: default-song,
-      size: footer-font-size
-    )
-    if section.at(1) != none {
-      align(center)[#counter(page).display()]
-    }
-  }
-
-  // 设置页面属性
-  set page(
-    paper: "a4",
-    margin: default-margins,
-    header-ascent: 45%,
-    footer-descent: 25%,
-    header: header-content,
-    footer: footer-content,
-    numbering: "1",
-  )
-  
-  show: set-heading-style
-  show: set-figure-style
-  show: set-equation-style
-  show: set-list-numbering
 
   // 设置段落属性
   set par(
@@ -131,6 +74,12 @@
   import "pages/appendix.typ": appendix-content
   import "pages/acknowledgement.typ": acknowledgement-content
   import "pages/declaration.typ": declaration-content
+
+  show: set-page-style.with(double,gutter)
+  show: set-heading-style
+  show: set-figure-style
+  show: set-equation-style
+  show: set-list-numbering
 
   // 中文封面页
   chinese-cover(
@@ -180,8 +129,6 @@
   counter(page).update(1)
 
   // 正文内容
-
-  
   body
 
   // 参考文献
@@ -197,5 +144,5 @@
   acknowledgement-content
 
   // 原创性声明
-  declaration-content(title)
+  declaration-content(title,declaration_date)
 }

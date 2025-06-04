@@ -5,9 +5,9 @@
 #let set-heading-style(body) = {
   let d = state("d", none)
   show heading:set heading(numbering: "1.1.1.1.1")
-  // // 设置摘要和目录中的标题间距
   // TODO: 更加智能的标题间距
   // 一级标题：黑体，三号，居中; 同样适用于其他没有编号的一级标题
+  // 上间距: 1.5em, 下间距: 1.2em
   show heading.where(level: 1): set text(font: (
       (name: timesromance, covers: regex("[A-Za-z0-9]")),
       (name: heiti , covers: "latin-in-cjk"),
@@ -17,12 +17,15 @@
       (top: 2em - 0.5em, bottom: 1.2em)
       )
   // 如果想让每一个一级标题都出现在奇数页上, 可以使用这行代码.
+  // 但是推荐使用#pagebreak(to: "odd")手动设置断页
   // show heading.where(level: 1): it => pagebreak() + pagebreak(to: "odd", weak: false) + it
   show heading.where(level: 1): it => context {
     state("d").update(here().position())
     it
   }
   // 二级标题（小节）：黑体，小三号
+  // 下间距: 0.8em, 上间距: 1.8em
+  // 上面是一级标题时, 上间距由一级标题的下间距决定
   show heading.where(level: 2): set text(font: (
       (name: timesromance, covers: regex("[A-Za-z0-9]")),
       (name: heiti , covers: "latin-in-cjk"),
@@ -42,8 +45,8 @@
         block(below: 0.8em,above: 1.8em, it)
     }
   }
-  // show heading.where(level: 2): set block(outset: 0.5em, below: 0.8em, above: 1.8em )
 
+  // TODO: 三级标题与二级标题之间的间距
   // 三级标题（小小节）：黑体，四号
   show heading.where(level: 3): set text(font: (
       (name: timesromance, covers: regex("[A-Za-z0-9]")),

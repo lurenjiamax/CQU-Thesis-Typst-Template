@@ -48,7 +48,7 @@
 // 公式样式
 #let set-equation-style(body) = {
   set math.equation(numbering: num =>
-    "(" + (str(counter(heading).get().at(0)) + "." + str(num)) + ")"
+    text(font: timesromance, size: 12pt, "(" + (str(counter(heading).get().at(0)) + "." + str(num)) + ")")
   )
   body
 }

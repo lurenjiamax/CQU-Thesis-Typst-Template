@@ -1,7 +1,8 @@
-
 #import "cqu-template.typ": project
 #import "utilities/three-line-table.typ": *
 #import "@preview/mitex:0.2.5": *
+#import "@preview/cuti:0.3.0": show-cn-fakebold
+#show: show-cn-fakebold
 // Create a sample CQU undergraduate thesis
 #show: project.with(
   title: "基于深度学习的图像识别研究",
@@ -18,7 +19,7 @@
   department: "计算机学院",
   department_en: "College of Computer Science",
   date: (2024, 6),
-  reference_date: (2024, 6, 10),
+  declaration_date: (2024, 6, 10),
   double: true, // 是否双面打印, 如果是双面打印, 则页眉页脚会有不同的内容
   gutter: true, // 是否有装订线的间距, 建议打印时设置即可
   abstract_zh: [
@@ -76,6 +77,41 @@
 
 论文主体部分字数要求：理工类专业一般不少于1.5万字，其他专业一般不少于1.0万字。
 
+== 常用格式
+#show link: underline
+这里列举的一些常用的格式可以满足大部分的使用场景, 详细的需要查阅Typst相关文档: #link("https://typst.app/docs")[EN], #link("https://typst-doc-cn.github.io/guide/")[CN]。
+=== 字体样式
+
+如果有特殊的字体样式需求, 可以使用`#text()`来设置字体样式, 例如:#text(font: "Times New Roman", size: 12pt)[这是一个使用Times New Roman字体的文本]。
+- *Bold Text*, `#text(weight: "bold")[Bold Text]`
+- #text(style: "italic")[Italic Text], `#text(style: "italic")[Italic Text]`
+- #text(fill: red)[Red Text], 颜色可以使用`#text(fill: "red")[红色文本]`来设置文本颜色。
+
+=== 数学
+本科生Typst数学手册: https://github.com/brynne8/typst-undergradmath-zh/blob/6a1028bc13c525f29f6445e92fc6af3246b3c3cb/undergradmath.pdf
+
+常用数学符号: https://typst-doc-cn.github.io/tutorial/basic/reference-math-symbols.html
+
+在文内可用`$$`包裹数学公式, 例如使用花体的$cal(C)_7^2$. 居中的话, 则使用
+$
+  "C"_7^2 = sum_(i=1)^7 i^2 
+$
+
+=== 脚注
+脚注可以使用`#footnote()`来添加脚注内容, 例如:#footnote("这是一个脚注的内容")。脚注会自动编号, 并在页面底部显示。
+
+=== 引用
+
+标签是以`<>`包裹的独特文本, 例如: `<table_basic_thing>`, 需要放在图表或公式的末尾。引用时使用`@table_basic_thing`来引用。
+
+目前Typst原生不支持双语(CSL-M)文献样式, 可以参考部分现有的解决方法:
+- #link("https://github.com/nju-lug/modern-nju-thesis/issues/3")["NJU"]: 替换法.
+- #link("https://github.com/Shuenhoy/citext")[Citext]: 外部库, 实验性.
+- #link("https://github.com/cherichy/BUAA-typst/blob/main/typstcite.md")[BUAA]: 改源码+外部引用生成
+
+本模板采用的是NJU的替换法, 通过`bilingual-bibliography.typ`来实现双语文献的引用。CSL样式文件使用的是经修改后的`gb-t-7714-2015-numeric.csl`, 你可以在`bib/`目录下找到。
+
+
 == 本章小结
 
 本章介绍了论文正文的基本格式和字数要求。
@@ -119,7 +155,7 @@ $$$
  1/mu nabla^2A - j omega sigma A - nabla(1/mu) 
 #math.times (nabla #math.times A)+J_0=0 
 $$$<formula_abc>
-然后使用`@formula_abc`对 @formula_abc 进行引用
+然后使用`@formula_abc`对 @formula_abc\进行引用
 
 === Latex
 也可以使用Latex的语法: 

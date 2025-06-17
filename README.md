@@ -1,6 +1,21 @@
 # 重庆大学本科生毕业论文 Typst 模板
 
-本项目为重庆大学本科生毕业论文的 Typst 模板, 基于重庆大学本科生毕业论文 LaTeX 模板制作, 后续可能会陆续添加对研究生和博士生毕业论文的支持.
+本项目为重庆大学本科生毕业论文的 Typst 模板, 基于重庆大学本科生毕业论文 LaTeX 模板和Word 模板制作, 后续可能会陆续添加对研究生和博士生毕业论文的支持.
+
+## 效果
+### 首页
+| Latex  | Word | Typst |
+| ------------- | ------------- | ------------- | 
+| ![alt text](assets/comparation/Latex-1.png)  | ![alt text](assets/comparation/word-01.png)  | ![alt text](assets/comparation/typst-01.png) |
+
+   从模板直接编译得到的首页封面效果.
+
+### 正文
+| Latex | Word | Typst | 
+| ------------- | ------------- | ------------- | 
+| ![alt text](assets/comparation/Latex-6.png) | ![alt texs](assets/comparation/word-06.png) | ![alt text](assets/comparation/typst-06.png) |
+
+
 
 ## 简介
 
@@ -77,6 +92,8 @@ CQU-typst-template/
   major_en: "Major",
   department: "学院",
   department_en: "Department",
+  double: true, // 是否双面打印
+  gutter: true, // 装订线, 具体长度可在变量中修改
   date: (2024, 6), // 年月
   abstract_zh: [...], // 中文摘要内容
   abstract_en: [...], // 英文摘要内容
@@ -101,6 +118,13 @@ bibliography(
 )
 ```
 
+目前参考文献为英文格式, 如果想使用中文, 请修改对应的字体 语言.
+Typst目前不支持CSL-M, 无法中英文参考文献混用, 并且有些文献类型不支持(如`incollection`), 有一些解决方法但需要自己探索. 目前模板采用了来自NJU的替换法.
+
+可以参考以下链接: 
+
+https://github.com/nju-lug/modern-nju-thesis/issues/3
+
 ## 页眉和页脚
 
 本模板自动为文档添加页眉和页脚：
@@ -121,6 +145,13 @@ bibliography(
 1. 本模板仅适用于重庆大学本科生毕业论文
 2. 模板尽量遵循重庆大学本科生毕业论文格式要求，但可能存在细微差异
 3. 使用前请确认最新的学校论文格式要求
+
+### 标题
+默认一级标题可出现在任何地方, 如果想做到只出现在奇数页上, 可以在`set-heading.typ`中对相关的代码取消注释. 如果出错, 可以手动使用`#pagebeak(to: "odd", weak: false)` 进行断页.
+
+需要注意的是, 一级标题后紧跟二级标题时做了特殊处理, 二者之间有一行多的正文时间距是正常的, 如果出现了异常, 则可能出现额外的v(1.8em)的间距.
+
+页眉的标题显示格式和TOC中显示的标题样式挂钩, 请使标题只以[]形式包裹, 不要使用任何样式.
 
 ## 问题
 

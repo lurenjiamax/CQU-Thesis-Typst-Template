@@ -3,7 +3,7 @@
 #import "@preview/hydra:0.6.1": hydra
 
 #let set-page-style(double, gutter, body) = {
-let double = true
+
   let gutter-left = context {
       if gutter and calc.even(here().page()) {
          return page-gutter } 

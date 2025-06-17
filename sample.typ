@@ -20,8 +20,8 @@
   department_en: "College of Computer Science",
   date: (2024, 6),
   declaration_date: (2024, 6, 10),
-  double: true, // 是否双面打印, 如果是双面打印, 则页眉页脚会有不同的内容
-  gutter: true, // 是否有装订线的间距, 建议打印时设置即可
+  double: false, // 是否双面打印, 如果是双面打印, 则页眉页脚会有不同的内容
+  gutter: false, // 是否有装订线的间距, 建议打印时设置即可
   abstract_zh: [
     摘要是论文（设计）内容不加注释和评论的简短陈述，应具有独立性和自明性，即不阅读论文（设计）的全文，就可以获得必要的信息。
 
